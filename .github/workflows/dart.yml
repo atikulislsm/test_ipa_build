@@ -23,12 +23,6 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s "/Applications/Xcode_15.4.app"
 
-      # Make sure Podfile has correct deployment target (not iOS 18!)
-      - name: Update iOS Podfile target
-        run: |
-          sed -i.bak 's/platform :ios.*/platform :ios, "13.0"/' ios/Podfile rm ios/Podfile.bak
-          cat ios/Podfile | grep platform
-
       - name: Pod Repo Update
         run: pod repo update
         working-directory: ios
